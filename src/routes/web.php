@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/todos', function() {
+    echo 'Hello World!';
+});
