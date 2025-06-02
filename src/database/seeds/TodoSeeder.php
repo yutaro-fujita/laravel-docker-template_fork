@@ -20,6 +20,21 @@ class TodoSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'content' => 'Laravelをインストール',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'content' => 'todosテーブルを作成',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'content' => 'controllerでmodelを使おう',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
                 'content' => 'Laravel Lessonを終える',
                 'created_at' => now(),
                 'updated_at' => now(),
