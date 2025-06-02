@@ -25,4 +25,10 @@ class TodoController extends Controller
         $todo->save(); //オブジェクトの状態をDBに保存(INSERT文)
         return redirect()->route('todo.index');
     }
+    public function show($id)
+    {
+        $model = new Todo();
+        $todo = $model->find($id);
+        return view('todo.show', ['todo' => $todo]);
+    }
 }
