@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\TodoRequest;
 use App\Todo;
 
 class TodoController extends Controller
@@ -21,10 +22,9 @@ class TodoController extends Controller
     {
         return view('todo.create');
     }
-    public function store(Request $request)
+    public function store(TodoRequest $request)
     {
         $inputs = $request->all();
-        
         $this->todo->fill($inputs); //今回取得した全key=>valueを埋める
         $this->todo->save(); //オブジェクトの状態をDBに保存(INSERT文)
         return redirect()->route('todo.index');
@@ -39,7 +39,7 @@ class TodoController extends Controller
         $todo = $this->todo->find($id);
         return view('todo.edit', ['todo' => $todo]);
     }
-    public function update(Request $request, $id)
+    public function update(TodoRequest $request, $id)
     {
         $inputs = $request->all();
         $todo = $this->todo->find($id);
