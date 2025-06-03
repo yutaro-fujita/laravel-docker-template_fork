@@ -7,10 +7,14 @@ use App\Todo;
 
 class TodoController extends Controller
 {
+    private $todo; //
+    public function __construct(Todo $todo)
+    {
+        $this->todo = $todo; //todoというプロパティにインスタンスを代入
+    }
     public function index()
     {
-        $todo = new Todo();
-        $todos = $todo->all();
+        $todos = $this->todo->all();
         return view('todo.index', ['todos' => $todos]);
     }
     public function create()
@@ -20,15 +24,19 @@ class TodoController extends Controller
     public function store(Request $request)
     {
         $inputs = $request->all();
-        $todo = new Todo(); //modelのインスタンス化
-        $todo->fill($inputs); //今回取得した全key=>valueを埋める
-        $todo->save(); //オブジェクトの状態をDBに保存(INSERT文)
+        
+        $this->todo->fill($inputs); //今回取得した全key=>valueを埋める
+        $this->todo->save(); //オブジェクトの状態をDBに保存(INSERT文)
         return redirect()->route('todo.index');
     }
     public function show($id)
     {
-        $model = new Todo();
-        $todo = $model->find($id);
+        $todo = $this->todo->find($id);
         return view('todo.show', ['todo' => $todo]);
+    }
+    public function edit($id)
+    {
+        $todo = $this->todo->find($id);
+        return view('todo.edit', ['todo' => $todo]);
     }
 }
